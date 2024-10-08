@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -12,9 +14,35 @@ import {
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
+import { createProject } from "@/actions/createProject";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const NewProjectButton = () => {
+  const ref = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    const formData = new FormData(event.currentTarget);
+    toast.promise(async () => await createProject(formData), {
+      loading: "Creating project",
+      success: (data) => {
+        ref.current?.reset();
+        router.push(`/projects/${data.insertedId}/instructions`);
+        return "Project created";
+      },
+      error: (error) => {
+        const message = error.message;
+        return message || "Failed to create project";
+      },
+      finally: () => setIsSubmitting(false),
+    });
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -29,18 +57,18 @@ const NewProjectButton = () => {
             Create a new project to get started
           </DialogDescription>
         </DialogHeader>
-        <form className="flex flex-col gap-3">
+        <form className="flex flex-col gap-3" onSubmit={handleSubmit} ref={ref}>
           <div className="space-y-1">
             <Label className="font-semibold" htmlFor="name">
               Name
             </Label>
-            <Input id="name" placeholder="Project name" />
+            <Input id="name" name="name" placeholder="Project name" />
           </div>
           <div className="space-y-1">
             <Label className="font-semibold" htmlFor="url">
               URL
             </Label>
-            <Input id="url" placeholder="https://example.com" />
+            <Input id="url" name="url" placeholder="https://example.com" />
           </div>
           <div className="space-y-1">
             <Label className="font-semibold" htmlFor="description">
@@ -49,12 +77,22 @@ const NewProjectButton = () => {
             <Textarea
               className="resize-none"
               id="description"
+              name="description"
               rows={3}
               placeholder="Description (optional)"
             />
           </div>
           <DialogFooter className="mt-2">
-            <Button type="submit">Create Project</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 animate-spin" size={16} />{" "}
+                  Creating...
+                </>
+              ) : (
+                "Create"
+              )}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
