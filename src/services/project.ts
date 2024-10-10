@@ -1,7 +1,7 @@
 import { db } from "@/db";
-import { projects } from "@/db/schema";
+import { feedbacks, projects } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { and, eq } from "drizzle-orm";
+import { and, count, eq } from "drizzle-orm";
 
 export const getProjects = async () => {
   try {
@@ -14,6 +14,40 @@ export const getProjects = async () => {
       .from(projects)
       .where(eq(projects.user_id, userId!));
     return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getFeedbacksByProjectId = async (id: string, page = 1) => {
+  try {
+    const userId = auth().userId;
+    if (!userId) {
+      throw new Error("Unauthorized");
+    }
+    const result = await db.query.feedbacks.findMany({
+      limit: 10,
+      offset: (page - 1) * 10,
+      where: eq(feedbacks.project_id, id),
+    });
+
+    const feedbackCountResult = await db
+      .select({ count: count() })
+      .from(feedbacks)
+      .where(eq(feedbacks.project_id, id));
+
+    const total = feedbackCountResult[0].count;
+
+    if (!result) {
+      throw new Error("Project not found");
+    }
+
+    return {
+      feedbacks: result,
+      total,
+      hasNext: total > (page - 1) * 10 + result.length,
+    };
   } catch (error) {
     console.log(error);
     return null;
