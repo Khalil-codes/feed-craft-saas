@@ -11,6 +11,8 @@ type RequestBody = {
   project_id: string;
 };
 
+const isDev = process.env.NODE_ENV !== "production";
+
 export const POST = async (request: Request) => {
   const body: RequestBody = await request.json();
   const headers = nextHeaders();
@@ -34,7 +36,10 @@ export const POST = async (request: Request) => {
       where: eq(projects.id, project_id),
     });
 
-    if (!project || new URL(project.url).origin !== headers.get("origin")) {
+    if (
+      !isDev &&
+      (!project || new URL(project.url).origin !== headers.get("origin"))
+    ) {
       throw new Error("Invalid Project/URL");
     }
 
