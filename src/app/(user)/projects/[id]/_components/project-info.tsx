@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/card";
 import { getProjectById } from "@/services/project";
 import { currentUser } from "@clerk/nextjs/server";
-import { Calendar, LinkIcon, User } from "lucide-react";
+import { Calendar, Code, LinkIcon, User } from "lucide-react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -43,6 +44,13 @@ const ProjectInfo = async ({ id }: Props) => {
         <div className="space-y-4">
           <p className="text-muted-foreground">{project.description}</p>
           <div className="flex flex-wrap gap-4">
+            <Link href={`/projects/${project.id}/instructions`}>
+              <Badge
+                variant="secondary"
+                className="flex items-center font-normal">
+                <Code className="mr-1 h-4 w-4" /> Embed Code
+              </Badge>
+            </Link>
             <Badge
               variant="secondary"
               className="flex items-center font-normal">

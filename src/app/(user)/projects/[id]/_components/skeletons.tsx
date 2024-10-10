@@ -22,6 +22,7 @@ export const ProjectInfoSkeleton = () => {
           <div className="flex flex-wrap gap-4">
             <Skeleton className="h-6 w-32" />
             <Skeleton className="h-6 w-32" />
+            <Skeleton className="h-6 w-32" />
           </div>
         </div>
       </CardContent>

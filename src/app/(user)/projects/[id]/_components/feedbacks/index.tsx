@@ -18,7 +18,7 @@ const Feedbacks = async ({ projectId, currentPage }: Props) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="text-xl font-bold">Feedback</h3>
+      <h3 className="text-xl font-bold">Feedbacks</h3>
       <DataTable
         columns={columns}
         data={data.feedbacks}
