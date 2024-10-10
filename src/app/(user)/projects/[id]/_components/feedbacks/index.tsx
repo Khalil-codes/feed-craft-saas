@@ -13,7 +13,12 @@ const Feedbacks = async ({ projectId, currentPage }: Props) => {
   const data = await getFeedbacksByProjectId(projectId, currentPage);
 
   if (!data?.feedbacks || data.feedbacks.length === 0) {
-    return <div>No feedback found</div>;
+    return (
+      <div className="flex flex-col gap-2">
+        <h3 className="text-xl font-bold">Feedbacks</h3>
+        <p className="mt-8 text-center font-bold">No feedbacks found</p>
+      </div>
+    );
   }
 
   return (
