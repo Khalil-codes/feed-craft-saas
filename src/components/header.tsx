@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./theme-toggle";
 
 const Header = () => {
   return (
@@ -23,6 +24,7 @@ const Header = () => {
         <SignedIn>
           <UserButton />
         </SignedIn>
+        <ModeToggle />
       </div>
     </header>
   );
