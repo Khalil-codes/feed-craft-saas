@@ -1,8 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Feed Craft
+
+================
+
+FeedCraft is a SaaS application designed to help users gather feedback for their projects through customizable and embeddable feedback widgets
+
+![Feed Craft](./src/assets/feed-craft.gif)
+
+## Features
+
+---
+
+- _Create and Embed Feedback Widgets_: Build fully customizable feedback widgets and embed them into any web application seamlessly.
+- _User Authentication_: Powered by Clerk, ensuring secure user authentication and account management.
+- _Dashboard_: Manage all your feedback projects from a centralized dashboard, making it easy to track progress and updates.
+- _Project Details & Feedback Listing_: View detailed project insights and access all feedback responses in a neatly organized manner.
+- _Customizable UI_: Customize the widget's appearance using Tailwind CSS to match your brand or website design.
+
+## Dependencies
+
+---
+
+The project uses the following dependencies:
+
+- Next.js
+- React
+- Clerk
+- Drizzle ORM
+- PostgreSQL
+- Tailwind CSS
 
 ## Getting Started
 
-First, run the development server:
+---
+
+To get started with the project, follow these steps:
+
+### Development Server
+
+Run the development server using one of the following commands:
 
 ```bash
 npm run dev
@@ -14,23 +49,29 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will start the development server, and you can access the application at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+The project can be deployed to Vercel using the following steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Create a new Vercel project
+2. Link the project to your GitHub repository
+3. Configure the project settings as needed
+4. Deploy the project to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+Contributions are welcome! If you'd like to contribute to the project, please fork the repository and submit a pull request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+The project is licensed under the MIT License.
+
+Note that this is a basic README file, and you may want to add more information about your project, such as screenshots, documentation, or troubleshooting guides.
