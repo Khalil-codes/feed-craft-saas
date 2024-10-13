@@ -7,6 +7,7 @@ export type Plan = {
   description: string;
   features: string[];
   isPopular?: boolean;
+  url: string;
 };
 
 export const plans: Plan[] = [
@@ -20,6 +21,7 @@ export const plans: Plan[] = [
       "2GB storage",
       "Priority support",
     ],
+    url: "/dashboard",
   },
   {
     title: "Monthly",
@@ -32,6 +34,7 @@ export const plans: Plan[] = [
       "Priority support",
     ],
     isPopular: true,
+    url: "/payments/subscribe?plan=monthly",
   },
   {
     title: "Yearly",
@@ -43,17 +46,18 @@ export const plans: Plan[] = [
       "50GB storage",
       "24/7 support",
     ],
+    url: "/payments/subscribe?plan=yearly",
   },
 ];
 
 const PricingSection = () => {
   return (
     <section>
-      <h2 className="text-center text-3xl capitalize">Pricing</h2>
+      <h2 className="text-center text-3xl font-bold capitalize">Pricing</h2>
       <p className="mb-8 mt-3 text-center text-2xl font-extrabold">
         Flexible Pricing to fit your needs.
       </p>
-      <ul className="grid max-w-screen-xl grid-cols-1 items-center gap-3 md:grid-cols-3">
+      <ul className="mx-auto grid max-w-screen-xl grid-cols-1 items-center gap-3 md:grid-cols-3">
         {plans.map((plan) => (
           <li key={plan.title} className="h-full">
             <PricingCard plan={plan} />

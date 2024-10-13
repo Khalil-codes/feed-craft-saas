@@ -2,10 +2,11 @@ import React from "react";
 import { Plan } from "./pricing-section";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const PricingCard = ({ plan }: { plan: Plan }) => {
   return (
-    <div className="tarnsition relative flex h-full flex-col justify-between rounded border bg-white/5 p-6 backdrop-blur-sm hover:shadow">
+    <div className="tarnsition relative flex h-full flex-col justify-between rounded-md border bg-white/5 p-6 backdrop-blur-sm hover:shadow">
       {plan.isPopular && (
         <div className="absolute right-0 top-0 rounded-bl-lg rounded-tr-lg bg-primary px-2 py-1 text-sm text-primary-foreground">
           Popular
@@ -32,7 +33,9 @@ const PricingCard = ({ plan }: { plan: Plan }) => {
             </li>
           ))}
         </ul>
-        <Button className="mt-4 w-full">Get Started</Button>
+        <Button className="mt-4 w-full" asChild>
+          <Link href={plan.url}>Get Started</Link>
+        </Button>
       </div>
     </div>
   );
