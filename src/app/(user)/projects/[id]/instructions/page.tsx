@@ -34,11 +34,11 @@ const InstructionPage = async ({ params }: Props) => {
       <div className="relative rounded-md bg-zinc-950 p-6 text-white shadow-sm dark:bg-zinc-900">
         <span className="absolute right-3 top-3">
           <CopyButton
-            text={`<my-widget id="${project.id}"></my-widget>\n<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
+            text={`<my-widget project="${project.id}"></my-widget>\n<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
           />
         </span>
         <code className="block w-[95%] text-sm">
-          {`<my-widget id="${project.id}"></my-widget>`}
+          {`<my-widget project="${project.id}"></my-widget>`}
           <br />
           {`<script src="${process.env.WIDGET_URL}/widget.umd.js"></script>`}
         </code>

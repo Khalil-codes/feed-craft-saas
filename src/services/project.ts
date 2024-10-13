@@ -30,6 +30,7 @@ export const getFeedbacksByProjectId = async (id: string, page = 1) => {
       limit: 10,
       offset: (page - 1) * 10,
       where: eq(feedbacks.project_id, id),
+      orderBy: ({ created_at }, { desc }) => desc(created_at),
     });
 
     const feedbackCountResult = await db
