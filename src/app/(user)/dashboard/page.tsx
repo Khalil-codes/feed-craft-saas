@@ -2,6 +2,13 @@ import React, { Suspense } from "react";
 import NewProjectButton from "@/components/new-project-btn";
 import ProjectList from "./_components/project-list";
 import { ProjectListSkeleton } from "./_components/skeletons";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard | Feed Craft",
+  description: "Dashboard for your projects",
+  robots: { index: false },
+};
 
 const DashboardPage = async () => {
   return (

@@ -11,6 +11,21 @@ type Props = {
   };
 };
 
+export const generateMetadata = async ({ params }: Props) => {
+  const id = params.id;
+  const project = await getProjectById(id);
+
+  if (!project) {
+    notFound();
+  }
+
+  return {
+    title: `Instructiond | ${project.name} | Feed Craft`,
+    description: project.description,
+    robots: { index: false },
+  };
+};
+
 const InstructionPage = async ({ params }: Props) => {
   const project = await getProjectById(params.id);
 

@@ -7,6 +7,8 @@ import ProjectInfo from "./_components/project-info";
 import Feedbacks from "./_components/feedbacks";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { getProjectById } from "@/services/project";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -14,6 +16,21 @@ type Props = {
   };
   searchParams: {
     page?: string;
+  };
+};
+
+export const generateMetadata = async ({ params }: Props) => {
+  const id = params.id;
+  const project = await getProjectById(id);
+
+  if (!project) {
+    notFound();
+  }
+
+  return {
+    title: `${project.name} | Feed Craft`,
+    description: project.description,
+    robots: { index: false },
   };
 };
 
