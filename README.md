@@ -1,7 +1,5 @@
 # Feed Craft
 
-================
-
 FeedCraft is a SaaS application designed to help users gather feedback for their projects through customizable and embeddable feedback widgets
 
 ![Feed Craft](./src/assets/feed-craft.gif)
